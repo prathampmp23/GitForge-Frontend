@@ -20,7 +20,7 @@ export default function Profile() {
       if (userId) {
         try {
           const response = await axios.get(
-            `http://localhost:3002/userProfile/${userId}`
+            `http://13.60.58.202:3002/userProfile/${userId}`
           );
           setUserDetails(response.data);
         } catch (err) {
