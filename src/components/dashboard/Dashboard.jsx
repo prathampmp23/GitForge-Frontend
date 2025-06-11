@@ -14,7 +14,7 @@ export default function Dashboard() {
     const fetchRepositories = async () => {
       try {
         const response = await fetch(
-          `http://13.60.58.202:3002/repo/user/${userId}`
+          `https://gitforge-backend.onrender.com/repo/user/${userId}`
         );
         const data = await response.json();
         // console.log(data)
@@ -26,7 +26,7 @@ export default function Dashboard() {
 
     const fetchSuggestedRepositories = async () => {
       try {
-        const response = await fetch(`http://13.60.58.202:3002/repo/all`);
+        const response = await fetch(`https://gitforge-backend.onrender.com/repo/all`);
         const data = await response.json();
         setSuggestedRepositories(data);
         // console.log(suggestedRepositories);

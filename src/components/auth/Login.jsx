@@ -12,7 +12,7 @@ export default function Login() {
     localStorage.removeItem("userId");
     setCurrentUser(null);
   }, []);
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,18 +23,25 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      setLoading(true);
-      const res = await axios.post("http://13.60.58.202:3002/login", {
-        email,
-        password,
-      });
+      if (email && password) {
+        setLoading(true);
+        const res = await axios.post(
+          "https://gitforge-backend.onrender.com/login",
+          {
+            email,
+            password,
+          }
+        );
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.userId);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.userId);
 
-      setCurrentUser(res.data.userId);
-      setLoading(false);
-      window.location.href = "/";
+        setCurrentUser(res.data.userId);
+        setLoading(false);
+        window.location.href = "/";
+      } else{
+      alert("Enter Email & Password!");
+      }
     } catch (err) {
       console.error(err);
       alert("Login Failed!");
@@ -71,6 +78,7 @@ export default function Login() {
               className="input"
               type="email"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -83,6 +91,7 @@ export default function Login() {
               className="input"
               type="password"
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

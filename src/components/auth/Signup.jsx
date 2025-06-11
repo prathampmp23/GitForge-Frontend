@@ -18,19 +18,26 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      setLoading(true);
-      const res = await axios.post("http://13.60.58.202:3002/signup", {
-        email,
-        password,
-        username,
-      });
+      if (email && password && username) {
+        setLoading(true);
+        const res = await axios.post(
+          "https://gitforge-backend.onrender.com/signup",
+          {
+            email,
+            password,
+            username,
+          }
+        );
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.userId);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.userId);
 
-      setCurrentUser(res.data.userId);
-      setLoading(false);
-      window.location.href = "/";
+        setCurrentUser(res.data.userId);
+        setLoading(false);
+        window.location.href = "/";
+      } else {
+        alert("Enter Signup Details!");
+      }
     } catch (err) {
       console.error(err);
       alert("Signup Failed!");
@@ -45,7 +52,13 @@ export default function Signup() {
       </div>
 
       <div className="login-box-wrapper">
-        <Box sx={{ p: 3, borderBottom: "1px solid", borderColor: "border.default" }}>
+        <Box
+          sx={{
+            p: 3,
+            borderBottom: "1px solid",
+            borderColor: "border.default",
+          }}
+        >
           <Heading as="h2" sx={{ fontSize: 4 }}>
             Sign Up
           </Heading>
@@ -61,6 +74,7 @@ export default function Signup() {
               className="input"
               type="text"
               value={username}
+              required
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
@@ -74,6 +88,7 @@ export default function Signup() {
               className="input"
               type="email"
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -87,6 +102,7 @@ export default function Signup() {
               className="input"
               type="password"
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>

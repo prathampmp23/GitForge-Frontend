@@ -41,17 +41,17 @@ export default function Navbar() {
         </Link>
 
         {/* ********** Desktop NavLinks ********** */}
-        <div className="hidden md:flex items-center gap-6 text-m">
+        <div className="hidden md:flex items-center gap-2 text-m">
           <>
             {!isLoggedIn && (
               <>
                 <Link to="/create">
-                  <p className="hover:text-blue-700 transition-colors duration-200  border-2 rounded-md border-gray-400 p-2 navLink flex gap-1">
+                  <p className="hover:text-blue-700 transition-colors duration-200   p-2 navLink flex gap-1">
                     <RepoTemplateIcon size={16} /> Repository
                   </p>
                 </Link>
                 <Link to="/profile">
-                  <p className="bg-white hover:bg-black hover:text-white hover:border-white px-3 py-2 border-2 border-gray-400 text-black font-bold rounded-md text-sm transition-colors duration-200">
+                  <p className="bg-white hover:bg-black hover:text-white px-3 py-2 text-black font-bold rounded-md text-sm transition-colors duration-200">
                     Profile
                   </p>
                 </Link>
@@ -60,12 +60,12 @@ export default function Navbar() {
             {isLoggedIn && (
               <>
                 <Link to="/create">
-                  <p className="justify-content-center hover:text-blue-700 transition-colors duration-200  border-2 rounded-md border-gray-400 p-1 navLink flex gap-1">
+                  <p className="justify-content-center hover:text-blue-700 transition-colors duration-200  p-1 navLink flex gap-1">
                     <RepoTemplateIcon size={16} className="mt-0.5" /> Repository
                   </p>
                 </Link>
                 <Link to="/profile">
-                  <p className="justify-content-center hover:text-blue-700 transition-colors duration-200  border-2 rounded-md border-gray-400 p-1 navLink">
+                  <p className="justify-content-center hover:text-blue-700 transition-colors duration-200  p-1 navLink">
                     Profile
                   </p>
                 </Link>
